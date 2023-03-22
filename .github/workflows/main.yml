@@ -1,0 +1,19 @@
+name: Pytest and Pylint
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run Pytest
+      run: pytest life_expectancy/tests/
+
+    - name: Run Pylint
+      run: pylint pylint assignments_01/

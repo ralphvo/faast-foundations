@@ -9,17 +9,23 @@ class Assignment01:
     FILE_NAME = 'eu_life_expectancy_raw.tsv'
     MAIN_PATH = Path('/mnt/c/Treinamentos/faast-foundations/')
 
-    def clean_data(self):
 
-        ''' 
-            This function reads data from eu_life_expectancy_raw.tsv, filter data where region equal to PT and
-            save the resulting data frame to the data folder as pt_life_expectancy.csv
+    def load_data(self):
+        '''
+            This function read data from eu_life_expectancy_raw.tsv
         '''
 
-        eu_life_expectancy_raw = pd.read_csv(f"{self.MAIN_PATH}/life_expectancy/data/{self.FILE_NAME}", delimiter = '\t')
+        return pd.read_csv(f"{self.MAIN_PATH}/life_expectancy/data/{self.FILE_NAME}", delimiter = '\t')
+
+
+    def clean_data(self, df_to_clean):
+        ''' 
+            This functio unpivot data to long format, so that it have the following columns:
+            unit, sex, age, region, year, value.
+        '''
 
         eu_life_expectancy_raw = pd.melt(
-            eu_life_expectancy_raw,
+            df_to_clean,
             id_vars = 'unit,sex,age,geo\\time',
 
             var_name = 'year',
@@ -54,17 +60,29 @@ class Assignment01:
         new_order = ['unit','sex','age','region','year','value']
         eu_life_expectancy_raw = eu_life_expectancy_raw.reindex(columns=new_order)
 
-        eu_life_expectancy_raw.to_csv(
+        return eu_life_expectancy_raw
+    
+
+    def save_data(self, df_to_save):
+        '''
+            This function save the data frame cleaned to the data folder
+        '''
+
+        df_to_save.to_csv(
             f"{self.MAIN_PATH}/life_expectancy/data/pt_life_expectancy.csv",
             index=False,
 
             escapechar=''
         )
+    
 
     def main(self):
         ''' Function to call clean_data() '''
 
-        self.clean_data()
+        df_pt_life_expectancy = self.load_data()
+        df_pt_life_expectancy_cleaned = self.clean_data(df_pt_life_expectancy)
+        self.save_data(df_pt_life_expectancy_cleaned)
+
 
 if __name__ == "__main__":
 

@@ -11,7 +11,10 @@ class Assignment01:
 
     def clean_data(self):
 
-        ''' Function for clean data '''
+        ''' 
+            This function reads data from eu_life_expectancy_raw.tsv, filter data where region equal to PT and
+            save the resulting data frame to the data folder as pt_life_expectancy.csv
+        '''
 
         eu_life_expectancy_raw = pd.read_csv(f"{self.MAIN_PATH}/life_expectancy/data/{self.FILE_NAME}", delimiter = '\t')
 

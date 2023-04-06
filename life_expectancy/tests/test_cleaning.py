@@ -1,7 +1,7 @@
 """Tests for the cleaning module"""
 import pandas as pd
 
-from assignments_01.cleaning import Assignment01
+from life_expectancy.cleaning import Assignment01
 from . import OUTPUT_DIR
 
 

@@ -22,6 +22,7 @@ class Assignment01:
         ''' 
             This functio unpivot data to long format, so that it have the following columns:
             unit, sex, age, region, year, value.
+            
         '''
 
         eu_life_expectancy_raw = pd.melt(

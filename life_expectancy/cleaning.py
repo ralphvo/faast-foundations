@@ -7,7 +7,7 @@ class Assignment01:
     ''' Class for assignment implementation '''
 
     FILE_NAME = 'eu_life_expectancy_raw.tsv'
-    MAIN_PATH = Path('/mnt/c/Treinamentos/faast-foundations/')
+    MAIN_PATH = Path('/mnt/c/Treinamentos/faast-foundations/life_expectancy')
 
 
     def load_data(self):
@@ -15,7 +15,7 @@ class Assignment01:
             This function read data from eu_life_expectancy_raw.tsv
         '''
 
-        return pd.read_csv(f"{self.MAIN_PATH}/life_expectancy/data/{self.FILE_NAME}", delimiter = '\t')
+        return pd.read_csv(f"{self.MAIN_PATH}/data/{self.FILE_NAME}", delimiter = '\t')
 
 
     def clean_data(self, df_to_clean):
@@ -69,7 +69,7 @@ class Assignment01:
         '''
 
         df_to_save.to_csv(
-            f"{self.MAIN_PATH}/life_expectancy/data/pt_life_expectancy.csv",
+            f"{self.MAIN_PATH}/data/pt_life_expectancy.csv",
             index=False,
 
             escapechar=''

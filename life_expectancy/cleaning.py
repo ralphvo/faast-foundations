@@ -1,13 +1,14 @@
 ''' All modules used '''
 from pathlib import Path
 import pandas as pd
+from pathlib import Path
 
 
 class Assignment01:
     ''' Class for assignment implementation '''
 
     FILE_NAME = 'eu_life_expectancy_raw.tsv'
-    MAIN_PATH = Path('/mnt/c/Treinamentos/faast-foundations/life_expectancy')
+    MAIN_PATH = Path(__file__).parent
 
 
     def load_data(self):

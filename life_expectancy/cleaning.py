@@ -1,7 +1,6 @@
 ''' All modules used '''
 from pathlib import Path
 import pandas as pd
-from pathlib import Path
 
 
 class Assignment01:
@@ -50,12 +49,14 @@ class Assignment01:
         cast_dic = {'year': int, 'value': float}
         eu_life_expectancy_raw = eu_life_expectancy_raw.astype(cast_dic)
 
-        eu_life_expectancy_raw['unit'] = eu_life_expectancy_raw['unit,sex,age,region'].str.split(',').str[0]
+        eu_life_expectancy_raw['unit'] = eu_life_expectancy_raw['unit,sex,age,region']\
+            .str.split(',').str[0]
 
         new_columns = eu_life_expectancy_raw.columns[0].split(',')
 
         for column_intex, column in enumerate(new_columns):
-            column_value = eu_life_expectancy_raw['unit,sex,age,region'].str.split(',').str[column_intex]
+            column_value = eu_life_expectancy_raw['unit,sex,age,region']\
+                .str.split(',').str[column_intex]
             eu_life_expectancy_raw[column] = column_value
         eu_life_expectancy_raw = eu_life_expectancy_raw.drop(['unit,sex,age,region'], axis=1)
 
@@ -63,7 +64,7 @@ class Assignment01:
         eu_life_expectancy_raw = eu_life_expectancy_raw.reindex(columns=new_order)
 
         return eu_life_expectancy_raw
-    
+
 
     def save_data(self, df_to_save):
         '''
@@ -76,7 +77,7 @@ class Assignment01:
 
             escapechar=''
         )
-    
+
 
     def main(self):
         ''' Function to call clean_data() '''
